@@ -1,8 +1,8 @@
 # instruction.py
 from typing import Dict
-from .typing import Instruction
+from .base import InstructionBase
 
-class LDAInstruction(Instruction):
+class LDAInstruction(InstructionBase):
     def __init__(self):
         super().__init__()
         self.instruction_length = 1
@@ -10,7 +10,7 @@ class LDAInstruction(Instruction):
     def execute(self):
         self.process()
     
-class SEIInstruction(Instruction):
+class SEIInstruction(InstructionBase):
     def __init__(self):
         super().__init__()
         self.instruction_length = 1
@@ -19,7 +19,7 @@ class SEIInstruction(Instruction):
     def execute(self):
         self.process()
 
-class CLDInstruction(Instruction):
+class CLDInstruction(InstructionBase):
     def __init__(self):
         super().__init__()
         self.instruction_length = 1

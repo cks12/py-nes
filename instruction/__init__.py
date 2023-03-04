@@ -1,11 +1,11 @@
 from .instruction import *
-from .typing import Instruction
+from .base import InstructionBase
 instructionList = [
     LDAInstruction,
     SEIInstruction,
     CLDInstruction
 ]
-instruction_mapping: Dict[bytes, Instruction] = {}
+instruction_mapping: Dict[bytes, InstructionBase] = {}
 
 
 for instruction_class in instructionList:
