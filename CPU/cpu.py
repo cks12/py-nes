@@ -21,7 +21,7 @@ class CPU:
             instruction_class = self.instruction_mapping.get(identifier_byte, None)
            
             if instruction_class is not None: 
-                instruction = instruction_class()
+                instruction = instruction_class
                 instruction.set(identifier_byte)
                 instruction.execute()
             else:

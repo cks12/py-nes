@@ -9,5 +9,5 @@ instruction_mapping: Dict[bytes, Instruction] = {}
 
 
 for instruction_class in instructionList:
-    instruction = instruction_class
+    instruction = instruction_class()
     instruction_mapping[instruction.identifier_byte] = instruction
