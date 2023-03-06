@@ -1,16 +1,17 @@
 # instruction.py
 from typing import Dict
-from .base import InstructionBase
+from .base import instruction_base
 
-class LDAInstruction(InstructionBase):
+class lda_instruction(instruction_base):
     def __init__(self):
         super().__init__()
         self.instruction_length = 1
         self.identifier_byte = bytes.fromhex('78')
+
     def execute(self):
         self.process()
     
-class SEIInstruction(InstructionBase):
+class sei_instruction(instruction_base):
     def __init__(self):
         super().__init__()
         self.instruction_length = 1
@@ -18,12 +19,15 @@ class SEIInstruction(InstructionBase):
 
     def execute(self):
         self.process()
+        self.register.status.I = True
 
-class CLDInstruction(InstructionBase):
+class cld_instruction(instruction_base):
     def __init__(self):
         super().__init__()
         self.instruction_length = 1
         self.identifier_byte = bytes.fromhex('A9')
+    
     def execute(self):
         self.process()
+        self.register.status.D = True
 
