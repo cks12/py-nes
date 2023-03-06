@@ -18,18 +18,31 @@ class CPU:
         self.running = True
         self.cpu_registers.start()
         while self.running:
-            identifier_byte = self.rom.get_byte(self.cpu_registers.PC)
+            identifier_byte = self.rom.get_bytes(self.cpu_registers.PC)
             instruction_class = self.instruction_mapping.get(identifier_byte, None)
            
             if instruction_class is not None: 
+                
+                # get instruction
                 instruction = instruction_class
-                instruction.set(identifier_byte)
+
+                # rom bytes
+                num_data_bytes: int = instruction.instruction_length - 1
+                data_bytes = self.rom.get_bytes(self.cpu_registers.PC + 1, num_data_bytes)
+
+                # instructions sets
+                instruction.set_identifier_byte(identifier_byte)
+                instruction.set_register(self.cpu_registers)
+                instruction.set_data_bytes(data_bytes)
+
+                self.cpu_registers.add_program_counter(instruction.instruction_length)
                 instruction.execute()
             else:
+                self.cpu_registers.add_program_counter(1)
                 pass
                 # print('not config:')
 
-    def process_instructions(self, instruction: InstructionBase):
+    def process_instructions(self, instruction: instruction_base):
         instruction.process()
     
     def process_instructions(self):
