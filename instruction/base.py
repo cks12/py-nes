@@ -20,4 +20,5 @@ class instruction_base():
         raise NotImplementedError()
 
     def process(self):
-        print ("Identifier byte: {}".format(self.identifier_byte.hex()))
+        pass
+        # print ("Identifier byte: {}".format(self.identifier_byte.hex()))
